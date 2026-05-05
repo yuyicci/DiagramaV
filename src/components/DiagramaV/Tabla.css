@@ -1,0 +1,16 @@
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td {
+  vertical-align: top;
+}
+
+td textarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+}

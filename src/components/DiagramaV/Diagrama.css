@@ -1,0 +1,268 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background: #eee;
+}
+
+#report {
+  width: 1586px;
+  height: 1121px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1.5;
+  font-family: "Latin Modern Roman", serif;
+  font-size: 18px;
+  
+  overflow: hidden;
+  box-sizing: border-box;
+  
+  margin: 0 auto;
+}
+
+.gowin {
+  flex: 1;
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.2fr 3fr 2.25fr 2.25fr 3fr 3.2fr;
+  grid-template-rows: 0.8fr 0.3fr 2.8fr 5.8fr 1.6fr;
+  
+  grid-template-areas:
+    "header-left title title title title header-right"
+    "left-top title title title title right-top"
+    "left left middle middle right right"
+    "left-down left-down left-down right-down right-down right-down"
+    "bottom bottom bottom bottom bottom bottom";
+  
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 98%;
+  
+  overflow: hidden;
+  gap: 0;
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.header-left {
+  grid-area: header-left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header-right {
+  grid-area: header-right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  font-size: 10px;
+}
+
+.header-left,
+.header-right {
+  border-bottom: 1px solid black;
+  padding-bottom: 0;
+  margin-bottom: 15px;
+}
+
+.middle {
+  grid-area: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-top,
+.left,
+.left-down {
+  text-align: left;
+  justify-self: start;
+}
+
+.right-top,
+.right,
+.right-down {
+  text-align: right;
+  justify-self: end;
+}
+
+.left-top { grid-area: left-top; }
+.left { grid-area: left; }
+.left-down { grid-area: left-down; }
+
+.right-top { grid-area: right-top; }
+.right { grid-area: right; }
+.right-down { grid-area: right-down; }
+
+.bottom {
+  grid-area: bottom;
+  text-align: center;
+}
+
+.v-container {
+  position: absolute;
+  inset: 0;
+  grid-column: 1 / -1;
+  grid-row: 2 / 5;
+  pointer-events: none;
+}
+
+.v-left,
+.v-right {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: black;
+}
+
+.v-left {
+  top: -4%;
+  transform: rotate(-22deg);
+  transform-origin: bottom;
+}
+
+.v-right {
+  top: -4%;
+  transform: rotate(22deg);
+  transform-origin: bottom;
+}
+
+.v-line {
+  position: absolute;
+  height: 2px;
+  background: black;
+  top: 3%;
+}
+
+.l1 {
+  left: 0;
+  width: 475px;
+}
+
+.l2 {
+  right: 0;
+  width: 472px;
+}
+
+.logo {
+  height: 60px;
+}
+
+textarea.title-input {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+
+  width: 680px;
+  height: 80px;
+}
+
+textarea.middle-input {
+  font-size: 18px;
+  text-align: center;
+
+  width: 370px;
+  height: 250px;
+}
+
+textarea.left-1-input,
+textarea.right-1-input {
+  width: 470px;
+  height: 250px;
+}
+
+textarea.left-2-input,
+textarea.right-2-input {
+  width: 585px;
+  height: 125px;
+}
+
+textarea.left-3-input,
+textarea.right-3-input {
+  width: 670px;
+}
+
+textarea.left-3-input { height: 175px; }
+textarea.right-3-input { height: 90px }
+
+textarea.left-1-input,
+textarea.left-2-input,
+textarea.left-3-input {
+  text-align: left;
+}
+
+textarea.right-1-input,
+textarea.right-2-input,
+textarea.right-3-input {
+  text-align: right;
+}
+
+textarea.bottom-input {
+  text-align: center;
+  width: 1550px;
+  height: 180px;
+}
+
+textarea {
+  font-size: 15px;
+  font-family: "Latin Modern Roman", serif;
+
+  resize: none;
+  overflow: hidden;
+
+  border: 1px solid #777;
+  outline: none;
+
+  box-sizing: border-box;
+  padding: 2px 2px;
+
+  background: transparent;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+p {
+  margin: 0;
+}
+
+.right-down div {
+  display: block;
+  margin-left: auto;
+}
+
+.tabla-preview-container {
+  max-height: 90px;
+  max-width: 665px;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  padding: 5px;
+}
+
+.tabla-preview-container table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-preview-container th {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

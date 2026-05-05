@@ -1,0 +1,76 @@
+{
+  "hash": "af9bdb18",
+  "configHash": "1bb3ba31",
+  "lockfileHash": "d3595ac2",
+  "browserHash": "2e7e679b",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "31349b82",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "f4fa4eab",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1a7c103b",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "b1e0b176",
+      "needsInterop": false
+    },
+    "mathlive": {
+      "src": "../../node_modules/mathlive/mathlive.mjs",
+      "file": "mathlive.js",
+      "fileHash": "b7474f4f",
+      "needsInterop": false
+    },
+    "html2pdf.js": {
+      "src": "../../node_modules/html2pdf.js/dist/html2pdf.js",
+      "file": "html2pdf__js.js",
+      "fileHash": "20e8d1ca",
+      "needsInterop": true
+    },
+    "@mui/material/Fab": {
+      "src": "../../node_modules/@mui/material/esm/Fab/index.js",
+      "file": "@mui_material_Fab.js",
+      "fileHash": "5eb138ba",
+      "needsInterop": false
+    },
+    "@mui/icons-material/ArrowUpward": {
+      "src": "../../node_modules/@mui/icons-material/esm/ArrowUpward.js",
+      "file": "@mui_icons-material_ArrowUpward.js",
+      "fileHash": "e525161b",
+      "needsInterop": false
+    },
+    "katex": {
+      "src": "../../node_modules/katex/dist/katex.mjs",
+      "file": "katex.js",
+      "fileHash": "27e24ff0",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-POQVU2VI": {
+      "file": "chunk-POQVU2VI.js"
+    },
+    "chunk-NKJ65MO7": {
+      "file": "chunk-NKJ65MO7.js"
+    },
+    "chunk-HA2I5Q66": {
+      "file": "chunk-HA2I5Q66.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}

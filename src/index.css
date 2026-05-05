@@ -1,0 +1,14 @@
+:root {
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: white;
+  color: black;
+}
+
+#root {
+  min-height: 100vh;
+}
