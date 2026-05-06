@@ -93,13 +93,6 @@ src
 * **PdfBoton.tsx**: Exportación del contenido a PDF.
 * **logo-usm.png**: Imagen utilizada en el diagrama.
 
-## Uso
-
-1. Completar las secciones del diagrama.
-2. Agregar ecuaciones o tablas si es necesario.
-3. Previsualizar el contenido.
-4. Exportar a PDF.
-
 ## Licencia
 
 Este proyecto utiliza librerías bajo licencia MIT.
