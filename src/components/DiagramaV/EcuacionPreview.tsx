@@ -70,7 +70,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 				>
 					{!isRight && (
 						<span style={{ fontSize: "15px" }}>
-							{item.number}
+							{item.number}.- 
 						</span>
 					)}
 				
@@ -87,7 +87,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 					
 					{isRight && (
 						<span style={{ fontSize: "15px" }}>
-							{item.number}
+							 -.{item.number}
 						</span>
 					)}
 				</div>
