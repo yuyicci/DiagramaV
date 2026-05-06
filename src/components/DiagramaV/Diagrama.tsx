@@ -12,8 +12,9 @@ export default function Diagrama() {
 
 	const tablaWindow = useRef(null);
 	const openTabla = () => {
+		const base = import.meta.env.BASE_URL;
 		if (!tablaWindow.current || tablaWindow.current.closed) {
-			tablaWindow.current = window.open("/tabla", "tablaWindow");
+			tablaWindow.current = window.open(`${base}#/tabla`, "tablaWindow");
 		} else {
 			tablaWindow.current.focus();
 		}
@@ -21,8 +22,9 @@ export default function Diagrama() {
 	
 	const ecuacionesWindow = useRef(null);
 	const openEcuaciones = () => {
+		const base = import.meta.env.BASE_URL;
 		if (!ecuacionesWindow.current || ecuacionesWindow.current.closed) {
-			ecuacionesWindow.current = window.open("/ecuaciones", "ecuacionesWindow");
+			ecuacionesWindow.current = window.open(`${base}#/ecuaciones`, "ecuacionesWindow");
 		} else {
 			ecuacionesWindow.current.focus();
 		}
@@ -30,8 +32,9 @@ export default function Diagrama() {
 	
 	const transformacionesWindow = useRef(null);
 	const openTransformaciones = () => {
+		const base = import.meta.env.BASE_URL;
 		if (!transformacionesWindow.current || transformacionesWindow.current.closed) {
-			transformacionesWindow.current = window.open("/transformaciones", "transformacionesWindow");
+			transformacionesWindow.current = window.open(`${base}#/transformaciones`, "transformacionesWindow");
 		} else {
 			transformacionesWindow.current.focus();
 		}

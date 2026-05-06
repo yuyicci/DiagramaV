@@ -39,9 +39,10 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 	
 	const indexMap = isRight ? [1, 0, 3, 2] : [0, 1, 2, 3];
 	
-	const ordered = indexMap.map(i => ecuaciones[i]).filter(Boolean);
-	
-	const numberMap = indexMap.map(i => i + 1);
+	const mapped = indexMap.map((i) => ({
+		value: ecuaciones[i],
+		number: i + 1,
+	})).filter((item) => item.value);
 	
 	return (
 		<div
@@ -56,7 +57,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 				padding: "5px"
 			}}
 		>
-			{ordered.map((eq, i) => (
+			{mapped.map((item, i) => (
 				<div
 					key={i}
 					style={{
@@ -69,13 +70,13 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 				>
 					{!isRight && (
 						<span style={{ fontSize: "15px" }}>
-							{numberMap[i]}
+							{item.number}
 						</span>
 					)}
 				
 					<MathField
 						read-only
-						value={eq}
+						value={item.value}
 						style={{
 							border: "none",
 							width: "100%",
@@ -86,7 +87,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 					
 					{isRight && (
 						<span style={{ fontSize: "15px" }}>
-							{numberMap[i]}
+							{item.number}
 						</span>
 					)}
 				</div>
