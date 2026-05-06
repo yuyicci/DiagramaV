@@ -1,46 +1,106 @@
-Diagrama V:
+# Diagrama V
 
-El Diagrama V es un componente que proporciona una plantilla para la elaboración de reportes de física basados en el diagrama de Gowin. Además, permite exportar el trabajo realizado en formato PDF.
+Aplicación web desarrollada en React que permite crear reportes de física basados en el diagrama de Gowin. Incluye herramientas para estructurar información, trabajar con ecuaciones y tablas, y exportar el resultado en formato PDF.
 
-Librerías extras:
+## Características
 
-"html2pdf.js": "^0.14.0"
-"katex": "^0.16.45"
-"mathlive": "^0.109.1"
+* Creación de diagramas tipo V de Gowin
+* Edición de ecuaciones en tiempo real
+* Creación y edición de tablas
+* Vista previa de contenido
+* Exportación a PDF
 
-Todas son de código abierto y requieren únicamente la inclusión de la licencia MIT.
+## Tecnologías utilizadas
 
-Directorio src (único modificado):
-.
+* React + Vite
+* TypeScript
+
+### Librerías adicionales
+
+* html2pdf.js
+* katex
+* mathlive
+
+Todas las librerías son de código abierto bajo licencia MIT.
+
+## Instalación
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/yuyicci/DiagramaV.git
+cd DiagramaV
+```
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar en desarrollo:
+
+```bash
+npm run dev
+```
+
+Para generar versión de producción:
+
+```bash
+npm run build
+```
+
+Para visualizar el build:
+
+```bash
+npx serve dist
+```
+
+## Estructura del proyecto (src)
+
+```
+src
 ├── App.css
 ├── App.tsx
 ├── assets
-│ └── DiagramaV
-│ └── logo-usm.png
+│   └── DiagramaV
+│       └── logo-usm.png
 ├── components
-│ └── DiagramaV
-│ ├── Diagrama.css
-│ ├── Diagrama.tsx
-│ ├── Ecuaciones.tsx
-│ ├── EcuacionPreview.tsx
-│ ├── PdfBoton.tsx
-│ ├── Tabla.css
-│ ├── TablaPreview.tsx
-│ └── Tabla.tsx
+│   └── DiagramaV
+│       ├── Diagrama.css
+│       ├── Diagrama.tsx
+│       ├── Ecuaciones.tsx
+│       ├── EcuacionPreview.tsx
+│       ├── PdfBoton.tsx
+│       ├── Tabla.css
+│       ├── TablaPreview.tsx
+│       └── Tabla.tsx
 ├── index.css
 ├── main.tsx
 └── utils
+```
 
-App.tsx: Define la navegación de la aplicación mediante rutas (/DiagramaV, /Tabla, /Ecuaciones y /Transformaciones).
+## Descripción de componentes
 
-assets/DiagramaV/logo-usm.png: Imagen del logo utilizada en el componente principal.
+* **App.tsx**: Define la navegación mediante rutas (`/DiagramaV`, `/Tabla`, `/Ecuaciones`, `/Transformaciones`).
+* **Diagrama.tsx**: Componente principal que organiza el Diagrama V.
+* **Diagrama.css**: Estilos del diagrama principal.
+* **Ecuaciones.tsx**: Creación y edición dinámica de ecuaciones.
+* **EcuacionPreview.tsx**: Vista previa de ecuaciones renderizadas.
+* **Tabla.tsx**: Creación y edición de tablas de datos.
+* **TablaPreview.tsx**: Vista previa simplificada de tablas.
+* **Tabla.css**: Estilos de tablas.
+* **PdfBoton.tsx**: Exportación del contenido a PDF.
+* **logo-usm.png**: Imagen utilizada en el diagrama.
 
-components/DiagramaV:
-	- Diagrama.css: Define los estilos del diagrama principal.
-	- Diagrama.tsx: Componente principal que organiza y muestra el Diagrama V.
-	- Ecuaciones.tsx: Permite crear y editar ecuaciones de forma dinámica.
-	- EcuacionPreview.tsx: Muestra una vista previa de las ecuaciones renderizadas en el diagrama.
-	- PdfBoton.tsx: Permite exportar el contenido a PDF.
-	- Tabla.css: Define los estilos de las tablas.
-	- TablaPreview.tsx: Muestra una vista previa simplificada de la tabla en el diagrama.
-	- Tabla.tsx: Permite crear y editar tablas de datos.
+## Uso
+
+1. Completar las secciones del diagrama.
+2. Agregar ecuaciones o tablas si es necesario.
+3. Previsualizar el contenido.
+4. Exportar a PDF.
+
+## Licencia
+
+Este proyecto utiliza librerías bajo licencia MIT.
+
