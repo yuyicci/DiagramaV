@@ -5,6 +5,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
+const MathField = 'math-field' as any;
+
 type Ecuacion = {
 	id: number;
 	value: string;
@@ -68,7 +70,7 @@ export default function Ecuaciones({ storageKey }: Props) {
 					}}
 				>
 			
-					<math-field
+					<MathField
 						ref={(el) => {if (el) refs.current[eq.id] = el;}}
 						virtual-keyboard-mode="onfocus"
 						onInput={() => update(eq.id)}
@@ -81,7 +83,7 @@ export default function Ecuaciones({ storageKey }: Props) {
 						}}
 					>
 						{eq.value}
-					</math-field>
+					</MathField>
 			
 					<IconButton
 						onClick={() => remove(eq.id)}

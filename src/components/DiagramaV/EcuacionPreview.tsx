@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "mathlive";
 
+const MathField = 'math-field' as any;
+
 type Props = {
 	storageKey: string;
 	align?: "left" | "right";
@@ -71,7 +73,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 						</span>
 					)}
 				
-					<math-field
+					<MathField
 						read-only
 						value={eq}
 						style={{

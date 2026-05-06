@@ -19,7 +19,7 @@ export default function PdfButton({ targetId }: Props) {
 		return h2;
 	};
 	
-	const renderEcuaciones = (data: any[], anexo: HTMLElement) => {
+	const procesarEcuaciones = (data: any[], anexo: HTMLElement) => {
 		data.forEach((eq, i) => {
 			const container = document.createElement("div");
 			
@@ -51,7 +51,7 @@ export default function PdfButton({ targetId }: Props) {
 		});
 	};
 	
-	const renderTabla = (data: string[][], anexo: HTMLElement) => {
+	const procesarTabla = (data: string[][], anexo: HTMLElement) => {
 		const table = document.createElement("table");
 		table.style.width = "100%";
 		table.style.borderCollapse = "collapse";
@@ -171,7 +171,7 @@ export default function PdfButton({ targetId }: Props) {
 		anexo.appendChild(crearSubtitulo("Tabla:"));
 		const tablaData = localStorage.getItem("tablaData");
 		if (tablaData) {
-			renderTabla(JSON.parse(tablaData), anexo);
+			procesarTabla(JSON.parse(tablaData), anexo);
 		}
 		
 		const grid = document.createElement("div");
@@ -187,7 +187,7 @@ export default function PdfButton({ targetId }: Props) {
 		colEcuaciones.appendChild(crearSubtitulo("Ecuaciones:"));
 		const ecuacionesData = localStorage.getItem("ecuacionesData");
 		if (ecuacionesData) {
-			renderEcuaciones(JSON.parse(ecuacionesData), colEcuaciones);
+			procesarEcuaciones(JSON.parse(ecuacionesData), colEcuaciones);
 		}
 		
 		const colTransformaciones = document.createElement("div");
@@ -196,7 +196,7 @@ export default function PdfButton({ targetId }: Props) {
 		colTransformaciones.appendChild(crearSubtitulo("Transformaciones:"));
 		const transformacionesData = localStorage.getItem("transformacionesData");
 		if (transformacionesData) {
-			renderEcuaciones(JSON.parse(transformacionesData), colTransformaciones);
+			procesarEcuaciones(JSON.parse(transformacionesData), colTransformaciones);
 		}
 		
 		grid.appendChild(colEcuaciones);
@@ -210,7 +210,7 @@ export default function PdfButton({ targetId }: Props) {
 		
 		const opt = {
 			filename: `${document.title}.pdf`,
-			image: { type: "jpeg", quality: 0.98 },
+			image: { type: "jpeg" as const, quality: 0.98 },
 			html2canvas: {
 				scale: 2,
 				useCORS: true,
@@ -220,7 +220,7 @@ export default function PdfButton({ targetId }: Props) {
 			jsPDF: {
 				unit: "mm",
 				format: "a3",
-				orientation: "landscape",
+				orientation: "landscape" as const,
 			},
 			pagebreak: { mode: ["css", "legacy"] },
 		};

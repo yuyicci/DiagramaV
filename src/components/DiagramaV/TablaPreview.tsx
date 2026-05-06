@@ -21,7 +21,7 @@ export default function TablaPreview() {
 	const previewRows = data.slice(0, 2);
 	
 	return (
-	<table border="1" style={{ width: "100%" }}>
+	<table border={1} style={{ width: "100%" }}>
 		<tbody>
 			{previewRows.map((row, i) => (
 				<tr key={i}>

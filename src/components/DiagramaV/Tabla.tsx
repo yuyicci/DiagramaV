@@ -49,7 +49,7 @@ export default function Tabla() {
 				<button onClick={addColumn}>Agregar columna</button>
 			</div>
 
-			<table border="1">
+			<table border={1}>
 				<thead>
 					<tr>
 						{data[0]?.map((_, colIndex) => (
@@ -73,7 +73,7 @@ export default function Tabla() {
 								<td key={j}>
 									<textarea
 										value={cell}
-										maxLength={15}
+										maxLength={20}
 										onChange={(e) => updateCell(i, j, e.target.value)}
 										onKeyDown={(e) => {
 											if (e.key === "Enter") {
@@ -85,12 +85,6 @@ export default function Tabla() {
 											width: "100%",
 											resize: "none",
 											overflow: "hidden"
-										}}
-										onInput={(e) => {
-											const textarea = e.target;
-											
-											textarea.style.height = "auto";
-											textarea.style.height = textarea.scrollHeight + "px";
 										}}
 									/>
 								</td>
