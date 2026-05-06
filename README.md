@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+Diagrama V:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El Diagrama V es un componente que proporciona una plantilla para la elaboración de reportes de física basados en el diagrama de Gowin. Además, permite exportar el trabajo realizado en formato PDF.
 
-Currently, two official plugins are available:
+Librerías extras:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+"html2pdf.js": "^0.14.0"
+"katex": "^0.16.45"
+"mathlive": "^0.109.1"
 
-## React Compiler
+Todas son de código abierto y requieren únicamente la inclusión de la licencia MIT.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Directorio src (único modificado):
+.
+├── App.css
+├── App.tsx
+├── assets
+│ └── DiagramaV
+│ └── logo-usm.png
+├── components
+│ └── DiagramaV
+│ ├── Diagrama.css
+│ ├── Diagrama.tsx
+│ ├── Ecuaciones.tsx
+│ ├── EcuacionPreview.tsx
+│ ├── PdfBoton.tsx
+│ ├── Tabla.css
+│ ├── TablaPreview.tsx
+│ └── Tabla.tsx
+├── index.css
+├── main.tsx
+└── utils
 
-## Expanding the ESLint configuration
+App.tsx: Define la navegación de la aplicación mediante rutas (/DiagramaV, /Tabla, /Ecuaciones y /Transformaciones).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+assets/DiagramaV/logo-usm.png: Imagen del logo utilizada en el componente principal.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+components/DiagramaV:
+	- Diagrama.css: Define los estilos del diagrama principal.
+	- Diagrama.tsx: Componente principal que organiza y muestra el Diagrama V.
+	- Ecuaciones.tsx: Permite crear y editar ecuaciones de forma dinámica.
+	- EcuacionPreview.tsx: Muestra una vista previa de las ecuaciones renderizadas en el diagrama.
+	- PdfBoton.tsx: Permite exportar el contenido a PDF.
+	- Tabla.css: Define los estilos de las tablas.
+	- TablaPreview.tsx: Muestra una vista previa simplificada de la tabla en el diagrama.
+	- Tabla.tsx: Permite crear y editar tablas de datos.
