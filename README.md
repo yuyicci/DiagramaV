@@ -1,3 +1,5 @@
+# README DESACTUALIZADO
+
 # Diagrama V
 
 Aplicación web desarrollada en React que permite crear reportes de física basados en el diagrama de Gowin. Incluye herramientas para estructurar información, trabajar con ecuaciones y tablas, y exportar el resultado en formato PDF.

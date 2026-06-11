@@ -10,7 +10,7 @@ type Props = {
 
 export default function PdfButton({ targetId }: Props) {
 	
-	const crearSubtitulo = (texto: string) => {
+	const processSubtitle = (texto: string) => {
 		const h2 = document.createElement("h2");
 		h2.innerText = texto;
 		h2.style.marginBottom = "10px";
@@ -19,7 +19,7 @@ export default function PdfButton({ targetId }: Props) {
 		return h2;
 	};
 	
-	const procesarEcuaciones = (data: any[], anexo: HTMLElement) => {
+	const processEquations = (data: any[], anexo: HTMLElement) => {
 		data.forEach((eq, i) => {
 			const container = document.createElement("div");
 			
@@ -51,7 +51,7 @@ export default function PdfButton({ targetId }: Props) {
 		});
 	};
 	
-	const procesarTabla = (data: string[][], anexo: HTMLElement) => {
+	const processTable = (data: string[][], anexo: HTMLElement) => {
 		const table = document.createElement("table");
 		table.style.width = "100%";
 		table.style.borderCollapse = "collapse";
@@ -82,7 +82,7 @@ export default function PdfButton({ targetId }: Props) {
 		anexo.appendChild(table);
 	};
 	
-	const procesarTextareas = (original: HTMLElement, clone: HTMLElement) => {
+	const processTextareas = (original: HTMLElement, clone: HTMLElement) => {
 		const originalTextareas = original.querySelectorAll("textarea");
 		const cloneTextareas = clone.querySelectorAll("textarea");
 		
@@ -106,6 +106,8 @@ export default function PdfButton({ targetId }: Props) {
 			div.style.textAlign = style.textAlign;
 			div.style.fontWeight = style.fontWeight;
 			div.style.lineHeight = style.lineHeight;
+
+			div.style.marginTop = style.marginTop;
 			
 			div.textContent = ta.value;
 			
@@ -139,6 +141,27 @@ export default function PdfButton({ targetId }: Props) {
 			cloneMf.replaceWith(div);
 		});
 	};
+
+	const processImages = (data: any[], anexo: HTMLElement) => {
+		const grid = document.createElement("div");
+		grid.style.display = "grid";
+		grid.style.gridTemplateColumns = "1fr 1fr 1fr";
+		grid.style.gap = "16px";
+		grid.style.width = "100%";
+
+		data.forEach((item) => {
+			const img = document.createElement("img");
+			img.src = item.value;
+			img.style.width = "100%";
+			img.style.height = "auto";
+			img.style.borderRadius = "4px";
+			img.style.border = "0.3px solid #ccc";
+			anexo.appendChild(img);
+			grid.appendChild(img);
+		});
+
+		anexo.appendChild(grid);
+	};
 	
 	const convertHtmlPdf = () => {
 		const element = document.getElementById(targetId);
@@ -148,7 +171,7 @@ export default function PdfButton({ targetId }: Props) {
 		
 		clone.querySelectorAll(".no-pdf").forEach((el) => el.remove());
 		
-		procesarTextareas(element, clone);
+		processTextareas(element, clone);
 		procesarMath(element, clone);
 		
 		const anexo = document.createElement("div");
@@ -163,15 +186,15 @@ export default function PdfButton({ targetId }: Props) {
 		anexo.style.boxSizing = "border-box";
 		
 		const titulo = document.createElement("h1");
-		titulo.innerText = "Anexo";
+		titulo.innerText = "ANEXOS";
 		titulo.style.marginBottom = "20px";
 		titulo.style.fontFamily = "Latin Modern Roman";
 		anexo.appendChild(titulo);
 		
-		anexo.appendChild(crearSubtitulo("Tabla:"));
+		anexo.appendChild(processSubtitle("Tabla:"));
 		const tablaData = localStorage.getItem("tablaData");
 		if (tablaData) {
-			procesarTabla(JSON.parse(tablaData), anexo);
+			processTable(JSON.parse(tablaData), anexo);
 		}
 		
 		const grid = document.createElement("div");
@@ -184,19 +207,19 @@ export default function PdfButton({ targetId }: Props) {
 		const colEcuaciones = document.createElement("div");
 		colEcuaciones.style.display = "flex";
 		colEcuaciones.style.flexDirection = "column";
-		colEcuaciones.appendChild(crearSubtitulo("Ecuaciones:"));
+		colEcuaciones.appendChild(processSubtitle("Ecuaciones:"));
 		const ecuacionesData = localStorage.getItem("ecuacionesData");
 		if (ecuacionesData) {
-			procesarEcuaciones(JSON.parse(ecuacionesData), colEcuaciones);
+			processEquations(JSON.parse(ecuacionesData), colEcuaciones);
 		}
 		
 		const colTransformaciones = document.createElement("div");
 		colTransformaciones.style.display = "flex";
 		colTransformaciones.style.flexDirection = "column";
-		colTransformaciones.appendChild(crearSubtitulo("Transformaciones:"));
+		colTransformaciones.appendChild(processSubtitle("Transformaciones:"));
 		const transformacionesData = localStorage.getItem("transformacionesData");
 		if (transformacionesData) {
-			procesarEcuaciones(JSON.parse(transformacionesData), colTransformaciones);
+			processEquations(JSON.parse(transformacionesData), colTransformaciones);
 		}
 		
 		grid.appendChild(colEcuaciones);
@@ -207,6 +230,42 @@ export default function PdfButton({ targetId }: Props) {
 		const wrapper = document.createElement("div");
 		wrapper.appendChild(clone);
 		wrapper.appendChild(anexo);
+
+		const graficosData = localStorage.getItem("graficosData");
+		if (graficosData) {
+			const graficos = JSON.parse(graficosData);
+			if (graficos.length > 0) {
+				const graficosSection = document.createElement("div");
+				graficosSection.style.pageBreakBefore = "always";
+				graficosSection.style.background = "white";
+				graficosSection.style.display = "flex";
+				graficosSection.style.flexDirection = "column";
+				graficosSection.style.alignItems = "center";
+				graficosSection.style.padding = "40px";
+				graficosSection.style.boxSizing = "border-box";
+				graficosSection.appendChild(processSubtitle("Gráficos:"));
+				processImages(graficos, graficosSection);
+				wrapper.appendChild(graficosSection);
+			}
+		}
+
+		const imagenesData = localStorage.getItem("imagenesData");
+		if (imagenesData) {
+			const imagenes = JSON.parse(imagenesData);
+			if (imagenes.length > 0) {
+				const imagenesSection = document.createElement("div");
+				imagenesSection.style.pageBreakBefore = "always";
+				imagenesSection.style.background = "white";
+				imagenesSection.style.display = "flex";
+				imagenesSection.style.flexDirection = "column";
+				imagenesSection.style.alignItems = "center";
+				imagenesSection.style.padding = "40px";
+				imagenesSection.style.boxSizing = "border-box";
+				imagenesSection.appendChild(processSubtitle("Imágenes:"));
+				processImages(imagenes, imagenesSection);
+				wrapper.appendChild(imagenesSection);
+			}
+		}
 		
 		const opt = {
 			filename: `${document.title}.pdf`,

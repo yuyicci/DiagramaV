@@ -2,26 +2,41 @@ import { useState, useEffect } from "react";
 import "./Tabla.css";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
 
 export default function Tabla() {
 	useEffect(() => {
 		document.title = "Tabla";
 	}, []);
 
-	const [data, setData] = useState(() => {
+	const [data, setData] = useState<string[][]>(() => {
 		const saved = localStorage.getItem("tablaData");
-		return saved ? JSON.parse(saved) : [["", ""], ["", ""]];
+		return saved
+			? (JSON.parse(saved) as string[][])
+			: [["", ""], ["", ""]];
 	});
-	
-	
+
 	useEffect(() => {
 		localStorage.setItem("tablaData", JSON.stringify(data));
 	}, [data]);
 
-	const updateCell = (row, col, value) => {
-		const newData = data.map((r, i) =>
-			r.map((c, j) => (i === row && j === col ? value : c))
-		);
+	const send = () => {
+		if (data.length === 0) {
+			localStorage.removeItem("tablaEnviada");
+		} else {
+			localStorage.setItem(
+			"tablaEnviada",
+			JSON.stringify(data)
+			);
+		}
+		
+		window.close();
+	};
+
+	const updateCell = (row: number, col: number, value: string) => {
+		const newData = [...data];
+		newData[row] = [...newData[row]];
+		newData[row][col] = value;
 		setData(newData);
 	};
 
@@ -30,7 +45,7 @@ export default function Tabla() {
 		setData([...data, Array(cols).fill("")]);
 	};
 
-	const deleteRow = (rowIndex) => {
+	const deleteRow = (rowIndex: number) => {
 		setData(data.filter((_, i) => i !== rowIndex));
 	};
 
@@ -38,8 +53,12 @@ export default function Tabla() {
 		setData(data.map(row => [...row, ""]));
 	};
 
-	const deleteColumn = (colIndex) => {
-		setData(data.map(row => row.filter((_, j) => j !== colIndex)));
+	const deleteColumn = (colIndex: number) => {
+		if (data[0].length <= 1) return;
+
+		setData(data.map(row =>
+			row.filter((_, j) => j !== colIndex)
+		));
 	};
 
 	return (
@@ -101,6 +120,11 @@ export default function Tabla() {
 					))}
 				</tbody>
 			</table>
+			<div style={{ marginTop: 10 }}>
+				<Button variant="contained" onClick={send}>
+					Enviar Tabla
+				</Button>
+			</div>
 		</div>
 	);
 }

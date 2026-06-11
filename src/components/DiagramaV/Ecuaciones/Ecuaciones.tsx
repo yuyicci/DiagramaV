@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import Button from '@mui/material/Button';
 
 const MathField = 'math-field' as any;
 
@@ -26,13 +27,19 @@ export default function Ecuaciones({ storageKey }: Props) {
 		const saved = localStorage.getItem(storageKey);
 		return saved ? JSON.parse(saved) : [{ id: Date.now(), value: "" }];
 	});
+
+	const DRAFT_KEY = storageKey + "_draft";
+
+	useEffect(() => {
+		localStorage.setItem(DRAFT_KEY, JSON.stringify(ecuaciones));
+	}, [ecuaciones]);
+
+	const send = () => {
+		localStorage.setItem(storageKey, JSON.stringify(ecuaciones));
+		window.close();
+	};
 	
 	const refs = useRef<Record<number, any>>({});
-	
-	useEffect(() => {
-		localStorage.setItem(storageKey, JSON.stringify(ecuaciones));
-		window.dispatchEvent(new Event("ecuacionesUpdated"));
-	}, [ecuaciones, storageKey]);
 	
 	const update = (id: number) => {
 		const mf = refs.current[id];
@@ -71,7 +78,7 @@ export default function Ecuaciones({ storageKey }: Props) {
 				>
 			
 					<MathField
-						ref={(el) => {if (el) refs.current[eq.id] = el;}}
+						ref={(el: any) => {if (el) refs.current[eq.id] = el;}}
 						virtual-keyboard-mode="onfocus"
 						onInput={() => update(eq.id)}
 						style={{
@@ -97,16 +104,27 @@ export default function Ecuaciones({ storageKey }: Props) {
 				</div>
 			))}
 			
-			<Fab
-				color="primary"
-				onClick={add}
-				style={{
-					marginTop: "10px",
-					cursor: "pointer"
-				}}
-			>
-				<AddIcon />
-			</Fab>
+			<div style={{
+				display: "flex",
+				justifyContent: "space-between",
+				marginTop: "10px",
+				alignItems: "center"
+			}}>
+				<Fab
+					color="primary"
+					onClick={add}
+					style={{
+						marginTop: "10px",
+						cursor: "pointer"
+					}}
+				>
+					<AddIcon />
+				</Fab>
+
+				<Button variant="contained" onClick={send}>
+					Enviar
+				</Button>
+			</div>
 		</div>
 	);
 }

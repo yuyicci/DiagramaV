@@ -1,24 +1,33 @@
 import { useEffect, useState } from "react";
 
 export default function TablaPreview() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState<string[][]>([]);
 
 	useEffect(() => {
 		const loadData = () => {
-			const saved = localStorage.getItem("tablaData");
-			if (saved) setData(JSON.parse(saved));
+			const saved = localStorage.getItem("tablaEnviada");
+			if (saved) {
+			setData(JSON.parse(saved));
+			} else {
+			setData([]);
+			}
 		};
 
 		loadData();
 
-		const interval = setInterval(loadData, 1000);
+		const handleStorage = (e: StorageEvent) => {
+			if (e.key === "tablaEnviada") {
+			loadData();
+			}
+		};
 
-		return () => clearInterval(interval);
+		window.addEventListener("storage", handleStorage);
+		return () => window.removeEventListener("storage", handleStorage);
 	}, []);
 
 	if (!data.length) return <p>No hay datos aún</p>;
 	
-	const previewRows = data.slice(0, 2);
+	const previewRows = data.slice(0, 3);
 	
 	return (
 	<table border={1} style={{ width: "100%" }}>

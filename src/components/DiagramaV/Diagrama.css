@@ -56,12 +56,13 @@
 .header-left {
   grid-area: header-left;
   display: flex;
+  align-items: flex-end;
 }
 
 .header-right {
   grid-area: header-right;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   text-align: right;
   font-size: 13px;
@@ -70,7 +71,7 @@
 .header-left,
 .header-right {
   border-bottom: 1px solid black;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .middle {
@@ -96,11 +97,11 @@
 }
 
 .left-top { grid-area: left-top; }
-.left { grid-area: left; }
+.left { grid-area: left; margin-top: 10px;}
 .left-down { grid-area: left-down; }
 
 .right-top { grid-area: right-top; }
-.right { grid-area: right; }
+.right { grid-area: right; margin-top: 10px;}
 .right-down { grid-area: right-down; }
 
 .bottom {
@@ -146,16 +147,16 @@
 
 .l1 {
   left: 0;
-  width: 475px;
+  width: 460px;
 }
 
 .l2 {
   right: 0;
-  width: 472px;
+  width: 455px;
 }
 
 .logo {
-  height: 80px;
+  height: 50px;
 }
 
 textarea.title-input {
@@ -164,7 +165,9 @@ textarea.title-input {
   text-align: center;
 
   width: 680px;
-  height: 80px;
+  height: 50px;
+
+  margin-top: 20px;
 }
 
 textarea.middle-input {
@@ -172,28 +175,29 @@ textarea.middle-input {
   text-align: center;
 
   width: 370px;
-  height: 250px;
+  height: 220px;
 }
 
 textarea.left-1-input,
 textarea.right-1-input {
-  width: 470px;
-  height: 250px;
+  width: 450px;
+  height: 220px;
 }
 
 textarea.left-2-input,
 textarea.right-2-input {
-  width: 585px;
-  height: 125px;
+  width: 550px;
+  height: 100px;
 }
 
 textarea.left-3-input,
 textarea.right-3-input {
-  width: 670px;
+  width: 650px;
 }
 
-textarea.left-3-input { height: 175px; }
-textarea.right-3-input { height: 90px }
+textarea.left-2-input { margin-bottom: 30px; }
+textarea.left-3-input { height: 200px; }
+textarea.right-3-input { height: 80px }
 
 textarea.left-1-input,
 textarea.left-2-input,
@@ -210,7 +214,7 @@ textarea.right-3-input {
 textarea.bottom-input {
   text-align: center;
   width: 1550px;
-  height: 180px;
+  height: 150px;
 }
 
 textarea {
@@ -234,16 +238,17 @@ textarea {
 
 p {
   margin: 0;
+  font-weight: bold;
 }
 
-.right-down div {
+.right-down > div:not(.concept-buttons-right) {
   display: block;
   margin-left: auto;
 }
 
 .tabla-preview-container {
-  max-height: 90px;
-  max-width: 665px;
+  max-height: 120px;
+  max-width: 650px;
   overflow: hidden;
   border: 2px solid #ccc;
   padding: 5px;
@@ -261,4 +266,18 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.concept-buttons {
+  display: flex;
+}
+
+.concept-buttons-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.concept-buttons-center {
+  display: flex;
+  justify-content: center;
 }

@@ -2,41 +2,64 @@ import { useEffect, useRef } from "react";
 import "./Diagrama.css";
 import PdfButton from "./PdfBoton";
 import logo from "../../assets/DiagramaV/logo-usm.png";
-import  TablaPreview from  "./TablaPreview";
-import { EcuacionPreview } from "./EcuacionPreview";
+import  TablaPreview from  "./Tabla/TablaPreview";
+import { EcuacionPreview } from "./Ecuaciones/EcuacionPreview";
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function Diagrama() {
 	useEffect(() => {
 		document.title = "DiagramaV";
 	}, []);
 
-	const tablaWindow = useRef(null);
+	const tablaWindow = useRef<Window | null>(null);
 	const openTabla = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!tablaWindow.current || tablaWindow.current.closed) {
-			tablaWindow.current = window.open(`${base}#/tabla`, "tablaWindow");
+			tablaWindow.current = window.open(`${base}tabla`, "tablaWindow");
 		} else {
 			tablaWindow.current.focus();
 		}
 	};
 	
-	const ecuacionesWindow = useRef(null);
+	const ecuacionesWindow = useRef<Window | null>(null);
 	const openEcuaciones = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!ecuacionesWindow.current || ecuacionesWindow.current.closed) {
-			ecuacionesWindow.current = window.open(`${base}#/ecuaciones`, "ecuacionesWindow");
+			ecuacionesWindow.current = window.open(`${base}ecuaciones`, "ecuacionesWindow");
 		} else {
 			ecuacionesWindow.current.focus();
 		}
 	};
 	
-	const transformacionesWindow = useRef(null);
+	const transformacionesWindow = useRef<Window | null>(null);
 	const openTransformaciones = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!transformacionesWindow.current || transformacionesWindow.current.closed) {
-			transformacionesWindow.current = window.open(`${base}#/transformaciones`, "transformacionesWindow");
+			transformacionesWindow.current = window.open(`${base}transformaciones`, "transformacionesWindow");
 		} else {
 			transformacionesWindow.current.focus();
+		}
+	};
+
+	const graficosWindow = useRef<Window | null>(null);
+	const openGraficos = () => {
+		const base = import.meta.env.BASE_URL;
+		if (!graficosWindow.current || graficosWindow.current.closed) {
+			graficosWindow.current = window.open(`${base}graficos`, "graficosWindow");
+		} else {
+			graficosWindow.current.focus();
+		}
+	};
+
+	const imagenesWindow = useRef<Window | null>(null);
+	const openImagenes = () => {
+		const base = import.meta.env.BASE_URL;
+		if (!imagenesWindow.current || imagenesWindow.current.closed) {
+			imagenesWindow.current = window.open(`${base}imagenes`, "imagenesWindow");
+		} else {
+			imagenesWindow.current.focus();
 		}
 	};
 
@@ -83,18 +106,30 @@ export default function Diagrama() {
 						<p><b>Dominio Conceptual</b></p>
 					</div>
 					<div className="left">
-						<p>Teorías</p>
+						<div className="concept-buttons">
+							<p>Teorías</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Conjunto(s) organizado(s) de principios y conceptos que guían la producción de conocimientos, explicando por qué los eventos u objetos exhiben lo que es observado."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="left-1-input"
-							placeholder="Conjunto(s) organizado(s) de principios y conceptos que guían la producción de conocimientos, explicando por qué los eventos u objetos exhiben lo que es observado."
 							maxLength={400}
 						/>
 					</div>
 					<div className="left-down">
-						<p>Ecuaciones</p>
+						<div className="concept-buttons">
+							<p>Ecuaciones</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Ecuaciones propias emanadas de la teoría que ayudan a abordar o resolver la problemática en las transformaciones."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="left-2-input"
-							placeholder="Ecuaciones propias emanadas de la teoría que ayudan a abordar o resolver la problemática en las transformaciones."
 							maxLength={250}
 						/>
 						<EcuacionPreview storageKey="ecuacionesData" align="left" />
@@ -105,10 +140,16 @@ export default function Diagrama() {
 							Editar ecuaciones
 						</button>
 						
-						<p>Conceptos</p>
+						<div className="concept-buttons">
+							<p>Conceptos</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Regularidades percibidas en eventos y objetos indicadas por un rótulo (la palabra concepto)."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="left-3-input"
-							placeholder="Regularidades percibidas en eventos y objetos indicadas por un rótulo (la palabra concepto)."
 							maxLength={200}
 						/>
 					</div>
@@ -117,20 +158,44 @@ export default function Diagrama() {
 						<p><b>Dominio Metodológico</b></p>
 					</div>
 					<div className="right">
-						<p>Conclusiones</p>
+						<div className="concept-buttons-right">
+							<p>Conclusiones</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Enunciados que responden la(s) pregunta(as) foco y que son interpretaciones razonables de los registros y de las transformaciones metodológicas hechas a la luz del dominio conceptual."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="right-1-input"
-							placeholder="Enunciados que responden la(s) pregunta(as) foco y que son interpretaciones razonables de los registros y de las transformaciones metodológicas hechas a la luz del dominio conceptual."
 							maxLength={400}
 						/>
 					</div>
 					<div className="right-down">
-						<p>Transformaciones</p>
+
+						<div className="concept-buttons-right">
+							<p>Transformaciones</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"En esta sección se interpretan los resultados obtenidos, comparándolos con valores teóricos o esperados, identificando tendencias, relaciones o discrepancias, y evaluando su validez a partir de los datos experimentales."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="right-2-input"
-							placeholder="En esta sección se interpretan los resultados obtenidos, comparándolos con valores teóricos o esperados, identificando tendencias, relaciones o discrepancias, y evaluando su validez a partir de los datos experimentales."
 							maxLength={250}
 						/>
+
+						<div>
+							<button className="no-pdf" onClick={openGraficos}>
+								Agregar gráficos
+							</button>
+
+							<button className="no-pdf" onClick={openImagenes}>
+								Agregar imagenes
+							</button>
+						</div>
+
 						<EcuacionPreview storageKey="transformacionesData" align="right" />
 						<button
 							className="no-pdf"
@@ -139,10 +204,16 @@ export default function Diagrama() {
 							Editar transformaciones
 						</button>
 						
-						<p>Registros</p>
+						<div className="concept-buttons-right">
+							<p>Registros</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Observaciones hechas y registradas de los eventos u objetos estudiados (datos crudos)."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="right-3-input"
-							placeholder="Observaciones hechas y registradas de los eventos u objetos estudiados (datos crudos)."
 							maxLength={200}
 						/>
 							
@@ -160,10 +231,16 @@ export default function Diagrama() {
 					</div>
 					
 					<div className="bottom">
-						<p>Eventos/Objetos</p>
+						<div className="concept-buttons-center">
+							<p>Eventos/Objetos</p>
+							<Tooltip title={<span style={{ fontSize: "15px" }}>{"Descripción del (de los) evento(s) u objeto(s) a ser estudiado(s) a fin de responder la(s) pregunta(s)."}</span>}arrow>
+								<IconButton size="small">
+									<InfoOutlinedIcon fontSize="small" />
+								</IconButton>
+							</Tooltip>
+						</div>
 						<textarea
 							className="bottom-input"
-							placeholder="Descripción del (de los) evento(s) u objeto(s) a ser estudiado(s) a fin de responder la(s) pregunta(s)."
 							maxLength={1000}
 						/>
 					</div>

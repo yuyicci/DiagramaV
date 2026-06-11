@@ -47,8 +47,8 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 	return (
 		<div
 			style={{
-				height: "65px",
-				width: "570px",
+				height: "100px",
+				width: "550px",
 				overflow: "hidden",
 				border: "1px solid #777",
 				display: "grid",
