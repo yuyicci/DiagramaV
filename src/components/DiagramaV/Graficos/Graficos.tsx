@@ -36,7 +36,7 @@ export default function Graficos({ storageKey }: Props) {
     };
 
     const MAX_SIZE = 2 * 1024 * 1024;
-    const MAX_ITEMS = 9;
+    const MAX_ITEMS = 6;
 
     const addImages = (files: FileList) => {
         Array.from(files).forEach((file) => {

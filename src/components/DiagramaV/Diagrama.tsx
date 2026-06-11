@@ -186,11 +186,10 @@ export default function Diagrama() {
 							maxLength={250}
 						/>
 
-						<div>
+						<div style={{ display: "flex", justifyContent: "space-between", width: "84.5%" }}>
 							<button className="no-pdf" onClick={openGraficos}>
 								Agregar gráficos
 							</button>
-
 							<button className="no-pdf" onClick={openImagenes}>
 								Agregar imagenes
 							</button>

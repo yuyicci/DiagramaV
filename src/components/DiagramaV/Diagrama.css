@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background: #eee;
 }
 
 #report {
@@ -214,7 +213,7 @@ textarea.right-3-input {
 textarea.bottom-input {
   text-align: center;
   width: 1550px;
-  height: 150px;
+  height: 140px;
 }
 
 textarea {
@@ -248,7 +247,7 @@ p {
 
 .tabla-preview-container {
   max-height: 120px;
-  max-width: 650px;
+  max-width: 637px;
   overflow: hidden;
   border: 2px solid #ccc;
   padding: 5px;
