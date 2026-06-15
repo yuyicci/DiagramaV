@@ -6,7 +6,7 @@ import Graficos from "./components/DiagramaV/Graficos/Graficos.tsx";
 
 function App() {
   return (
-  	<BrowserRouter basename="/DiagramaV">
+  	<BrowserRouter>
   		<Routes>
         	<Route path="/" element={<Diagrama />} />
         	<Route path="/tabla" element={<Tabla />} />
