@@ -71,6 +71,7 @@ export default function Tabla() {
 			<table border={1}>
 				<thead>
 					<tr>
+						<th>Tabla</th>
 						{data[0]?.map((_, colIndex) => (
 							<th key={colIndex}>
 								Columna {colIndex + 1}
@@ -81,13 +82,27 @@ export default function Tabla() {
 								</IconButton>
 							</th>
 						))}
-						<th>Filas</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					{data.map((row, i) => (
 						<tr key={i}>
+							<td
+								style={{
+									textAlign: "center",
+									fontWeight: "bold",
+									verticalAlign: "middle"
+								}}
+							>
+								Fila {i + 1}
+								<IconButton
+									onClick={() => deleteRow(i)}
+									size="small"
+								>
+									<DeleteIcon fontSize="small"/>
+								</IconButton>
+							</td>
 							{row.map((cell, j) => (
 								<td key={j}>
 									<textarea
@@ -102,20 +117,14 @@ export default function Tabla() {
 										rows={1}
 										style={{
 											width: "100%",
+											height: "30px",
+											textAlign: "center",
 											resize: "none",
 											overflow: "hidden"
 										}}
 									/>
 								</td>
 							))}
-							<td>
-								<IconButton
-									size="small"
-									onClick={() => deleteRow(i)}
-								>
-									<DeleteIcon fontSize="inherit"/>
-								</IconButton>
-							</td>
 						</tr>
 					))}
 				</tbody>

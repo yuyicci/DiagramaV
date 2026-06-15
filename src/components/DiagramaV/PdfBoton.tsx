@@ -108,6 +108,7 @@ export default function PdfButton({ targetId }: Props) {
 			div.style.lineHeight = style.lineHeight;
 
 			div.style.marginTop = style.marginTop;
+			div.style.marginBottom = style.marginBottom;
 			
 			div.textContent = ta.value;
 			
@@ -146,14 +147,15 @@ export default function PdfButton({ targetId }: Props) {
 		const grid = document.createElement("div");
 		grid.style.display = "grid";
 		grid.style.gridTemplateColumns = "1fr 1fr 1fr";
+		grid.style.gridTemplateRows = "1fr 1fr";
 		grid.style.gap = "16px";
 		grid.style.width = "100%";
 
 		data.forEach((item) => {
 			const img = document.createElement("img");
 			img.src = item.value;
-			img.style.width = "100%";
-			img.style.height = "auto";
+			img.style.width = "auto";
+			img.style.height = "500px";
 			img.style.borderRadius = "4px";
 			img.style.border = "0.3px solid #ccc";
 			anexo.appendChild(img);

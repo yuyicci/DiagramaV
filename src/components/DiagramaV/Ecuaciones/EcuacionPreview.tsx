@@ -10,6 +10,7 @@ type Props = {
 
 export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 	const [ecuaciones, setEcuaciones] = useState<string[]>([]);
+	const isRight = align === "right";
 	
 	useEffect(() => {
 		const load = () => {
@@ -17,7 +18,11 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 			if (saved) {
 				try {
 					const arr = JSON.parse(saved);
-					setEcuaciones(arr.slice(0, 4).map((e: any) => e.value));
+					if (isRight){
+						setEcuaciones(arr.slice(0, 6).map((e: any) => e.value));
+					} else {
+						setEcuaciones(arr.slice(0, 9).map((e: any) => e.value));
+					}
 				} catch {
 					setEcuaciones([]);
 				}
@@ -35,9 +40,7 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 		};
 	}, [storageKey]);
 	
-	const isRight = align === "right";
-	
-	const indexMap = isRight ? [1, 0, 3, 2] : [0, 1, 2, 3];
+	const indexMap = isRight ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6, 7, 8];
 	
 	const mapped = indexMap.map((i) => ({
 		value: ecuaciones[i],
@@ -47,13 +50,13 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 	return (
 		<div
 			style={{
-				height: "100px",
-				width: "538px",
+				height: isRight ? "100px" : "180px",
+				width: isRight ? "538px" : "580px",
 				overflow: "hidden",
 				border: "1px solid #777",
 				display: "grid",
-				gridTemplateColumns: "1fr 1fr",
-				gridTemplateRows: "1fr 1fr",
+				gridTemplateColumns: "1fr 1fr 1fr",
+				gridTemplateRows: isRight ? "1fr 1fr" : "1fr 1fr 1fr",
 				padding: "5px"
 			}}
 		>
@@ -68,11 +71,9 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 						justifyContent: isRight ? "flex-end" : "flex-start"
 					}}
 				>
-					{!isRight && (
-						<span style={{ fontSize: "15px" }}>
-							{item.number}.- 
-						</span>
-					)}
+					<span style={{ fontSize: "15px" }}>
+						{item.number}.- 
+					</span>
 				
 					<MathField
 						read-only
@@ -84,12 +85,6 @@ export function EcuacionPreview({ storageKey, align = "left" }: Props) {
 							textAlign: isRight ? "right" : "left"
 						}}
 					/>
-					
-					{isRight && (
-						<span style={{ fontSize: "15px" }}>
-							 -.{item.number}
-						</span>
-					)}
 				</div>
 			))}
 		</div>

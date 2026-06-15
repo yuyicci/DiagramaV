@@ -63,10 +63,15 @@ export default function Ecuaciones({ storageKey }: Props) {
 		
 		delete refs.current[id];
 	};
+
+	const title = storageKey === "ecuacionesData" ? "Ecuaciones" : "Transformaciones";
 	
 	return (
 		<div style={{ padding: "10px" }}>
-			{ecuaciones.map((eq) => (
+			<h2 style={{ marginTop: 0 }}>
+				{title}
+			</h2>
+			{ecuaciones.map((eq, index) => (
 				<div
 					key={eq.id}
 					style={{
@@ -76,6 +81,15 @@ export default function Ecuaciones({ storageKey }: Props) {
 						marginBottom: "6px"
 					}}
 				>
+					<span
+						style={{
+							fontWeight: "bold",
+							minWidth: "30px",
+							textAlign: "right"
+						}}
+					>
+						{index + 1}.-
+					</span>
 			
 					<MathField
 						ref={(el: any) => {if (el) refs.current[eq.id] = el;}}

@@ -77,10 +77,14 @@ export default function Graficos({ storageKey }: Props) {
         setItems((prev) => prev.filter((i) => i.id !== id));
     };
 
+    const title = storageKey === "graficosData" ? "Gráficos" : "Imágenes";
     const label = storageKey === "graficosData" ? "Agregar gráficos" : "Agregar imágenes";
 
     return (
         <div style={{ padding: 20 }}>
+            <h2 style={{ marginTop: 0 }}>
+				{title}
+			</h2>
             <div style={{ marginBottom: 20 }}>
                 <Button variant="contained" component="label">
                     {label}
