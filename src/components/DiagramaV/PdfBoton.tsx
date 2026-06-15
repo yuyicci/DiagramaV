@@ -155,7 +155,7 @@ export default function PdfButton({ targetId }: Props) {
 			const img = document.createElement("img");
 			img.src = item.value;
 			img.style.width = "auto";
-			img.style.height = "500px";
+			img.style.height = "450px";
 			img.style.borderRadius = "4px";
 			img.style.border = "0.3px solid #ccc";
 			anexo.appendChild(img);
