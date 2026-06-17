@@ -96,7 +96,15 @@ export default function Diagrama() {
 					<div className="middle">
 						<div className="concept-buttons-center">
 							<p>Preguntas Foco</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Preguntas que sirven para enfocar la búsqueda de la información sobre los eventos/objetos (Límite de caracteres: 280)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Preguntas que sirven para enfocar la búsqueda de la información sobre los eventos/objetos.
+									<br />
+									<br />
+									(Límite de caracteres: 280).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -115,7 +123,16 @@ export default function Diagrama() {
 					<div className="left">
 						<div className="concept-buttons">
 							<p>Teorías</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Conjunto(s) organizado(s) de principios y conceptos que guían la producción de conocimientos, explicando por qué los eventos u objetos exhiben lo que es observado (Límite de caracteres: 450)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Conjunto(s) organizado(s) de principios y conceptos que guían la producción de
+									conocimientos, explicando por qué los eventos u objetos exhiben lo que es observado.
+									<br />
+									<br />
+									(Límite de caracteres: 450).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -130,7 +147,16 @@ export default function Diagrama() {
 					<div className="left-down">
 						<div className="concept-buttons">
 							<p>Ecuaciones</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Ecuaciones propias emanadas de la teoría que ayudan a abordar o resolver la problemática en las transformaciones (Límite de caracteres: 500)."}</span>}arrow>
+							<Tooltip 
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Ecuaciones propias emanadas de la teoría que ayudan a abordar o resolver
+									la problemática en las transformaciones.
+									<br />
+									<br />
+									(Límite de caracteres: 500).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -151,7 +177,16 @@ export default function Diagrama() {
 						
 						<div className="concept-buttons">
 							<p>Conceptos</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Regularidades percibidas en eventos y objetos indicadas por un rótulo (la palabra concepto), (Límite de caracteres: 220)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Regularidades percibidas en eventos y objetos indicadas por un rótulo
+									(la palabra concepto).
+									<br />
+									<br />
+									(Límite de caracteres: 220).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -170,7 +205,16 @@ export default function Diagrama() {
 					<div className="right">
 						<div className="concept-buttons-right">
 							<p>Conclusiones</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Enunciados que responden la(s) pregunta(as) foco y que son interpretaciones razonables de los registros y de las transformaciones metodológicas hechas a la luz del dominio conceptual (Límite de caracteres: 450)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Enunciados que responden la(s) pregunta(as) foco y que son interpretaciones razonables
+									de los registros y de las transformaciones metodológicas hechas a la luz del dominio conceptual.
+									<br />
+									<br />
+									(Límite de caracteres: 450).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -186,7 +230,21 @@ export default function Diagrama() {
 
 						<div className="concept-buttons-right">
 							<p>Transformaciones</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"En esta sección se interpretan los resultados obtenidos, comparándolos con valores teóricos o esperados, identificando tendencias, relaciones o discrepancias, y evaluando su validez a partir de los datos experimentales (Límite de caracteres: 250)."}</span>}arrow>
+							<Tooltip 
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									En esta sección se interpretán los resultados obtenidos,
+									comparándolos con valores teóricos o esperados,
+									identificando tendencias, relaciones o discrepancias,
+									y evaluando su validez a partir de los datos experimentales.
+									<br />
+									Importante: las imágenes y los gráficos se visualizan únicamente
+									en los anexos del Diagrama en V.
+									<br />
+									<br />
+									(Límite de caracteres: 250)
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -217,7 +275,15 @@ export default function Diagrama() {
 						
 						<div className="concept-buttons-right">
 							<p>Registros</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Observaciones hechas y registradas de los eventos u objetos estudiados (datos crudos) (Límite de caracteres: 220)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Observaciones hechas y registradas de los eventos u objetos estudiados (datos crudos).
+									<br />
+									<br />
+									(Límite de caracteres: 220).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
@@ -245,7 +311,15 @@ export default function Diagrama() {
 					<div className="bottom">
 						<div className="concept-buttons-center">
 							<p>Eventos/Objetos</p>
-							<Tooltip className="no-pdf" title={<span style={{ fontSize: "15px" }}>{"Descripción del (de los) evento(s) u objeto(s) a ser estudiado(s) a fin de responder la(s) pregunta(s) (Límite de caracteres: 1000)."}</span>}arrow>
+							<Tooltip
+								className="no-pdf"
+								title={<span style={{ fontSize: "15px" }}>
+									Descripción del (de los) evento(s) u objeto(s) a ser estudiado(s) a fin de responder la(s) pregunta(s).
+									<br />
+									<br />
+									(Límite de caracteres: 1000).
+								</span>}arrow
+							>
 								<IconButton size="small">
 									<InfoOutlinedIcon fontSize="small" />
 								</IconButton>
