@@ -23,10 +23,8 @@ export default function Admin() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [processingId, setProcessingId] = useState<number | null>(null);
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
 
-    const cargarSolicitudes = async (paginaActual: number) => {
+    const cargarSolicitudes = async () => {
         try {
             setLoading(true);
             setError("");
@@ -39,7 +37,7 @@ export default function Admin() {
             }
 
             const response = await fetch(
-                `${API_BASE_URL}/admin/teachers/pending?page=${paginaActual}&pageSize=10`,
+                `${API_BASE_URL}/admin/teachers/pending`,
                 {
                     headers: {
                         Authorization: `Bearer ${adminToken}`,
@@ -55,7 +53,6 @@ export default function Admin() {
             }
 
             setTeachers(data.teachers);
-            setTotalPages(data.totalPages);
 
         } catch (error) {
             console.error(error);
@@ -99,9 +96,9 @@ export default function Admin() {
     };
 
     useEffect(() => {
-        cargarSolicitudes(page);
+        cargarSolicitudes();
         cargarProfesores();
-    }, [page]);
+    }, []);
 
     const procesarSolicitud = async (
         id: number,
@@ -191,8 +188,7 @@ export default function Admin() {
                 )
             );
 
-            // Si era una solicitud pendiente, actualizar
-            cargarSolicitudes(page);
+            cargarSolicitudes();
 
         } catch (error) {
             console.error(error);
