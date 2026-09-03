@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import "./Diagrama.css";
 import PdfButton from "./PdfBoton";
-import logo from "../../assets/DiagramaV/logo-usm.png";
+import logoDefault from "../../assets/DiagramaV/logo-usm.png";
 import  TablaPreview from  "./Tabla/TablaPreview";
 import { EcuacionPreview } from "./Ecuaciones/EcuacionPreview";
 import Tooltip from '@mui/material/Tooltip';
@@ -13,11 +14,23 @@ export default function Diagrama() {
 		document.title = "DiagramaV";
 	}, []);
 
+
+	const location = useLocation();
+	
+	useEffect(() => {
+		if (location.pathname === "/diagramav/default") {
+			localStorage.removeItem("reportId");
+			localStorage.removeItem("reportCode");
+			localStorage.removeItem("studentName");
+			localStorage.removeItem("teacherReportConfig");
+		}
+	}, [location.pathname]);
+
 	const tablaWindow = useRef<Window | null>(null);
 	const openTabla = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!tablaWindow.current || tablaWindow.current.closed) {
-			tablaWindow.current = window.open(`${base}tabla`, "tablaWindow");
+			tablaWindow.current = window.open(`${base}diagramav/tabla`, "tablaWindow");
 		} else {
 			tablaWindow.current.focus();
 		}
@@ -27,7 +40,7 @@ export default function Diagrama() {
 	const openEcuaciones = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!ecuacionesWindow.current || ecuacionesWindow.current.closed) {
-			ecuacionesWindow.current = window.open(`${base}ecuaciones`, "ecuacionesWindow");
+			ecuacionesWindow.current = window.open(`${base}diagramav/ecuaciones`, "ecuacionesWindow");
 		} else {
 			ecuacionesWindow.current.focus();
 		}
@@ -37,7 +50,7 @@ export default function Diagrama() {
 	const openTransformaciones = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!transformacionesWindow.current || transformacionesWindow.current.closed) {
-			transformacionesWindow.current = window.open(`${base}transformaciones`, "transformacionesWindow");
+			transformacionesWindow.current = window.open(`${base}diagramav/transformaciones`, "transformacionesWindow");
 		} else {
 			transformacionesWindow.current.focus();
 		}
@@ -47,7 +60,7 @@ export default function Diagrama() {
 	const openGraficos = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!graficosWindow.current || graficosWindow.current.closed) {
-			graficosWindow.current = window.open(`${base}graficos`, "graficosWindow");
+			graficosWindow.current = window.open(`${base}diagramav/graficos`, "graficosWindow");
 		} else {
 			graficosWindow.current.focus();
 		}
@@ -57,11 +70,15 @@ export default function Diagrama() {
 	const openImagenes = () => {
 		const base = import.meta.env.BASE_URL;
 		if (!imagenesWindow.current || imagenesWindow.current.closed) {
-			imagenesWindow.current = window.open(`${base}imagenes`, "imagenesWindow");
+			imagenesWindow.current = window.open(`${base}diagramav/imagenes`, "imagenesWindow");
 		} else {
 			imagenesWindow.current.focus();
 		}
 	};
+
+	const teacherConfig = JSON.parse(
+		localStorage.getItem("teacherReportConfig") || "{}"
+	);
 
 	return (
 		<div className="container">
@@ -83,13 +100,18 @@ export default function Diagrama() {
 					</div>
 					
 					<div className="header-left">
-						<img src={logo} alt="Logo USM" className="logo" />
+						<img
+							src={teacherConfig.logo || logoDefault}
+							alt="Logo"
+							className="logo"
+						/>
 					</div>
-					
+
 					<div className="header-right">
 						<p>
-							Universidad Técnica Federico Santa María<br />
-							Laboratorio de Experimentos Remotos
+							{teacherConfig.text_1 || "Universidad Técnica Federico Santa María"}
+							<br />
+							{teacherConfig.text_2 || "Laboratorio de Experimentos Remotos"}
 						</p>
 					</div>
 					

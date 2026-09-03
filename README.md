@@ -1,97 +1,134 @@
-# README DESACTUALIZADO
-
 # Diagrama V
 
-Aplicación web desarrollada en React que permite crear reportes de física basados en el diagrama de Gowin. Incluye herramientas para estructurar información, trabajar con ecuaciones y tablas, y exportar el resultado en formato PDF.
+Aplicación web para crear informes de física utilizando el **Diagrama V de Gowin**. Los alumnos pueden completar el diagrama, tablas de datos, ecuaciones, transformaciones y gráficos/imágenes, y posteriormente exportar el informe a PDF.
 
-## Página Web GitHub
+Los profesores generan códigos de acceso para sus cursos y pueden revisar los informes descargados por sus alumnos. Las nuevas cuentas de profesor deben ser aprobadas por un administrador.
 
-[Ver aplicación](https://yuyicci.github.io/DiagramaV/)
+## Aplicación
 
-## Tecnologías utilizadas
+[diagramav.cl](https://diagramav.cl)
 
-* React + Vite
-* TypeScript
+## Tecnologías
 
-### Librerías adicionales
+### Frontend
 
+* React 19 + Vite + TypeScript
+* React Router
+* Material UI (MUI)
 * html2pdf.js
-* katex
-* mathlive
+* KaTeX + MathLive
 
-Todas las librerías son de código abierto bajo licencia MIT.
+### Backend
+
+* Node.js + Express + TypeScript
+* PostgreSQL
+* JWT + Argon2
+* Zod
+* Multer
+* Helmet + express-rate-limit
 
 ## Instalación
 
-Clonar el repositorio:
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/yuyicci/DiagramaV.git
 cd DiagramaV
 ```
 
-Instalar dependencias:
+### 2. Frontend
 
 ```bash
 npm install
 ```
 
-Ejecutar en desarrollo:
+Crear `.env`:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+Ejecutar:
 
 ```bash
 npm run dev
 ```
 
-Para generar versión de producción:
+Para producción:
 
 ```bash
 npm run build
-```
-
-Para visualizar el build:
-
-```bash
 npx serve dist
 ```
 
-## Estructura del proyecto (src)
+### 3. Backend
 
-```
-src
-├── App.css
-├── App.tsx
-├── assets
-│   └── DiagramaV
-│       └── logo-usm.png
-├── components
-│   └── DiagramaV
-│       ├── Diagrama.css
-│       ├── Diagrama.tsx
-│       ├── Ecuaciones.tsx
-│       ├── EcuacionPreview.tsx
-│       ├── PdfBoton.tsx
-│       ├── Tabla.css
-│       ├── TablaPreview.tsx
-│       └── Tabla.tsx
-├── index.css
-├── main.tsx
-└── utils
+```bash
+cd backend
+npm install
 ```
 
-## Descripción de componentes
+Crear la base de datos ejecutando `schema.sql` en PostgreSQL.
 
-* **App.tsx**: Define la navegación mediante rutas (`/DiagramaV`, `/Tabla`, `/Ecuaciones`, `/Transformaciones`).
-* **Diagrama.tsx**: Componente principal que organiza el Diagrama V.
-* **Diagrama.css**: Estilos del diagrama principal.
-* **Ecuaciones.tsx**: Creación y edición dinámica de ecuaciones.
-* **EcuacionPreview.tsx**: Vista previa de ecuaciones renderizadas.
-* **Tabla.tsx**: Creación y edición de tablas de datos.
-* **TablaPreview.tsx**: Vista previa simplificada de tablas.
-* **Tabla.css**: Estilos de tablas.
-* **PdfBoton.tsx**: Exportación del contenido a PDF.
-* **logo-usm.png**: Imagen utilizada en el diagrama.
+Copiar `backend/.env.example` a `backend/.env` y configurar las variables:
+
+```env
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+DB_NAME=
+JWT_SECRET=
+FRONTEND_URL=
+NODE_ENV=
+```
+
+Crear JWT_SECRET:
+```bash
+[Convert]::ToBase64String((1..64 | ForEach-Object { Get-Random -Maximum 256 }))
+```
+
+Crear el primer administrador:
+
+```bash
+npx tsx create-admin.ts "Tu Nombre" tuemail@ejemplo.com "UnaContraseñaSegura123"
+```
+
+Ejecutar el backend:
+
+```bash
+npm run dev
+```
+
+Por defecto, el backend utiliza:
+
+```text
+http://localhost:3000
+```
+
+## Estructura
+
+```text
+DiagramaV/
+├── src/                 # Frontend
+│   ├── components/      # Componentes reutilizables
+│   └── pages/           # Páginas de alumnos, profesores y administrador
+│
+└── backend/             # Backend
+    ├── server.ts        # API y rutas
+    ├── database.ts      # Conexión a PostgreSQL
+    ├── schema.sql       # Esquema de la base de datos
+    ├── create-admin.ts  # Creación del administrador
+    ├── middleware/      # Autenticación y rate limiting
+    └── schemas/         # Validación con Zod
+```
+
+## Flujo del sistema
+
+1. **Alumno:** ingresa un código de curso, completa su informe y lo exporta a PDF.
+2. **Profesor:** crea una cuenta, espera la aprobación del administrador y luego genera códigos para sus cursos y revisa los informes descargados.
+3. **Administrador:** aprueba o rechaza las cuentas de profesores.
 
 ## Licencia
 
-Este proyecto utiliza librerías bajo licencia MIT.
-
+El proyecto utiliza librerías de código abierto, principalmente bajo licencia MIT.

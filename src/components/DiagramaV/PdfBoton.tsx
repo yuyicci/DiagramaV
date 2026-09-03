@@ -3,6 +3,7 @@ import Fab from "@mui/material/Fab";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+import { API_BASE_URL } from "../../config";
 
 type Props = {
   targetId: string;
@@ -165,7 +166,7 @@ export default function PdfButton({ targetId }: Props) {
 		anexo.appendChild(grid);
 	};
 	
-	const convertHtmlPdf = () => {
+	const convertHtmlPdf = async () => {
 		const element = document.getElementById(targetId);
 		if (!element) return;
 		
@@ -286,7 +287,53 @@ export default function PdfButton({ targetId }: Props) {
 			pagebreak: { mode: ["css", "legacy"] },
 		};
 		
-		html2pdf().set(opt).from(wrapper).save();
+		const pdfBlob = await html2pdf()
+			.set(opt)
+			.from(wrapper)
+			.outputPdf("blob");
+
+		// Descargar el PDF
+		const url = URL.createObjectURL(pdfBlob);
+		const link = document.createElement("a");
+
+		link.href = url;
+		link.download = `${document.title}.pdf`;
+		link.click();
+
+		URL.revokeObjectURL(url);
+
+		const formData = new FormData();
+
+		const reportId = localStorage.getItem("reportId");
+		const reportCode = localStorage.getItem("reportCode");
+		const studentMail = localStorage.getItem("studentMail");
+
+		if (!reportId || !reportCode || !studentMail) {
+			console.error("No existe información del informe");
+			return;
+		}
+
+		formData.append("report_id", reportId);
+		formData.append("code", reportCode);
+		formData.append("student_mail", studentMail);
+
+		formData.append(
+			"pdf",
+			pdfBlob,
+			"informe.pdf"
+		);
+
+		const response = await fetch(
+			`${API_BASE_URL}/reports`,
+			{
+				method: "POST",
+				body: formData
+			}
+		);
+
+		const resultado = await response.json();
+
+		console.log(resultado);
 	};
 	
 	return (
