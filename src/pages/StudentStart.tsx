@@ -6,6 +6,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import BackButton from "../components/BackButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import PersonIcon from "@mui/icons-material/Person";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { API_BASE_URL } from "../config";
 
 type ErrorResponse = {
@@ -107,7 +111,7 @@ export default function StudentStart() {
     return (
         <Box
             sx={{
-                minHeight: "100vh",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -125,8 +129,8 @@ export default function StudentStart() {
                 </Typography>
 
                 <Stack spacing={3} sx={{ mt: 3 }}>
-                    <TextField
-                        variant="standard"
+                                        <TextField
+                        variant="outlined"
                         label="Código del profesor"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
@@ -136,10 +140,17 @@ export default function StudentStart() {
                         required
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <VpnKeyIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
+                        variant="outlined"
                         label="Nombre del alumno"
                         value={studentName}
                         onChange={(e) => setStudentName(e.target.value)}
@@ -148,10 +159,17 @@ export default function StudentStart() {
                         required
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <PersonIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
+                        variant="outlined"
                         type="email"
                         label="Correo del alumno"
                         value={studentMail}
@@ -162,6 +180,13 @@ export default function StudentStart() {
                         required
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AlternateEmailIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <Button

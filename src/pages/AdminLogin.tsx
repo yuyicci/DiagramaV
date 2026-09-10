@@ -7,6 +7,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import BackButton from "../components/BackButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import HttpsIcon from "@mui/icons-material/Https";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { API_BASE_URL } from "../config";
 
 export default function AdminLogin() {
@@ -14,6 +20,8 @@ export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -60,7 +68,7 @@ export default function AdminLogin() {
     return (
         <Box
             sx={{
-                minHeight: "100vh",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -78,8 +86,8 @@ export default function AdminLogin() {
                 </Typography>
 
                 <Stack spacing={3} sx={{ mt: 3 }}>
-                    <TextField
-                        variant="standard"
+                                        <TextField
+                        variant="outlined"
                         type="email"
                         label="Correo"
                         value={mail}
@@ -88,11 +96,18 @@ export default function AdminLogin() {
                         required
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AlternateEmailIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
-                        type="password"
+                        variant="outlined"
+                        type={showPassword ? "text" : "password"}
                         label="Contraseña"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -101,6 +116,34 @@ export default function AdminLogin() {
                         required
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <HttpsIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={() =>
+                                            setShowPassword((v) => !v)
+                                        }
+                                        aria-label={
+                                            showPassword
+                                                ? "Ocultar contraseña"
+                                                : "Mostrar contraseña"
+                                        }
+                                        edge="end"
+                                    >
+                                        {showPassword ? (
+                                            <VisibilityIcon />
+                                        ) : (
+                                            <VisibilityOffIcon />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <Button

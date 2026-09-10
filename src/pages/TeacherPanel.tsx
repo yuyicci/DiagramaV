@@ -199,7 +199,7 @@ export default function TeacherPanel() {
             }
 
             const response = await fetch(
-                `${API_BASE_URL}/teachers/reports?page=${page}&pageSize=10`,
+                `${API_BASE_URL}/teachers/reports?page=${page}&pageSize=4`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -365,7 +365,7 @@ export default function TeacherPanel() {
                             value={text1}
                             onChange={(e) => setText1(e.target.value)}
                             multiline
-                            rows={3}
+                            rows={1}
                             fullWidth
                         />
 
@@ -375,7 +375,7 @@ export default function TeacherPanel() {
                             value={text2}
                             onChange={(e) => setText2(e.target.value)}
                             multiline
-                            rows={3}
+                            rows={1}
                             fullWidth
                         />
 

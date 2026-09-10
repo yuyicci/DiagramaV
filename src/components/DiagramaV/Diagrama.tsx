@@ -14,7 +14,6 @@ export default function Diagrama() {
 		document.title = "DiagramaV";
 	}, []);
 
-
 	const location = useLocation();
 	
 	useEffect(() => {
@@ -22,6 +21,7 @@ export default function Diagrama() {
 			localStorage.removeItem("reportId");
 			localStorage.removeItem("reportCode");
 			localStorage.removeItem("studentName");
+			localStorage.removeItem("studentMail");
 			localStorage.removeItem("teacherReportConfig");
 		}
 	}, [location.pathname]);
@@ -76,9 +76,9 @@ export default function Diagrama() {
 		}
 	};
 
-	const teacherConfig = JSON.parse(
-		localStorage.getItem("teacherReportConfig") || "{}"
-	);
+	const teacherConfig = location.pathname === "/diagramav/default" ? {} : JSON.parse(
+        localStorage.getItem("teacherReportConfig") || "{}"
+    );
 
 	return (
 		<div className="container">

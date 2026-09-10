@@ -11,8 +11,8 @@ CREATE TABLE public."Teacher" (
     mail VARCHAR(254) NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
     logo TEXT,
-    text_1 VARCHAR(255),
-    text_2 VARCHAR(255),
+    text_1 VARCHAR(50),
+    text_2 VARCHAR(50),
 
     id_state INTEGER NOT NULL,
 

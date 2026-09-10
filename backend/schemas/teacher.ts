@@ -43,6 +43,7 @@ export const updateTeacherSchema = z.object({
         .max(5_000_000, "El logo es demasiado grande")
         .nullable()
         .optional()
+        .transform((value) => (value === "" ? null : value))
         .refine(
             (value) =>
                 value === null ||

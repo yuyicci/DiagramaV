@@ -5,6 +5,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import BackButton from "../components/BackButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import PersonIcon from "@mui/icons-material/Person";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import HttpsIcon from "@mui/icons-material/Https";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { API_BASE_URL } from "../config";
 
 export default function TeacherRegister() {
@@ -17,6 +24,9 @@ export default function TeacherRegister() {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const registrar = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -82,7 +92,7 @@ export default function TeacherRegister() {
     return (
         <Box
             sx={{
-                minHeight: "100vh",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -100,18 +110,25 @@ export default function TeacherRegister() {
                 </Typography>
 
                 <Stack spacing={3} sx={{ mt: 3 }}>
-                    <TextField
-                        variant="standard"
+                                        <TextField
+                        variant="outlined"
                         label="Nombre"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         error={Boolean(error)}
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <PersonIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
+                        variant="outlined"
                         type="email"
                         label="Correo"
                         value={mail}
@@ -119,22 +136,57 @@ export default function TeacherRegister() {
                         error={Boolean(error)}
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AlternateEmailIcon />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
-                        type="password"
-                        label="Contraseña (mínimo 8 caracteres)"
+                        variant="outlined"
+                        type={showPassword ? "text" : "password"}
+                        label="Contraseña (Mínimo 8 caracteres)"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         error={Boolean(error)}
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <HttpsIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={() =>
+                                            setShowPassword((v) => !v)
+                                        }
+                                        aria-label={
+                                            showPassword
+                                                ? "Ocultar contraseña"
+                                                : "Mostrar contraseña"
+                                        }
+                                        edge="end"
+                                    >
+                                        {showPassword ? (
+                                            <VisibilityIcon />
+                                        ) : (
+                                            <VisibilityOffIcon />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
-                        variant="standard"
-                        type="password"
+                        variant="outlined"
+                        type={showConfirmPassword ? "text" : "password"}
                         label="Confirmar contraseña"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -142,6 +194,34 @@ export default function TeacherRegister() {
                         helperText={error || " "}
                         fullWidth
                         disabled={loading}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <HttpsIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={() =>
+                                            setShowConfirmPassword((v) => !v)
+                                        }
+                                        aria-label={
+                                            showConfirmPassword
+                                                ? "Ocultar contraseña"
+                                                : "Mostrar contraseña"
+                                        }
+                                        edge="end"
+                                    >
+                                        {showConfirmPassword ? (
+                                            <VisibilityIcon />
+                                        ) : (
+                                            <VisibilityOffIcon />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     {message && (
