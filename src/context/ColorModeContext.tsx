@@ -16,9 +16,6 @@ const ColorModeContext = createContext<ColorModeContextValue | null>(null);
 
 const STORAGE_KEY = "colorMode";
 
-// El modo oscuro rompe la captura del PDF (html2canvas arrastra colores
-// oscuros que dejan el texto ilegible), así que en estas rutas el tema
-// siempre es claro, sin importar la preferencia guardada del usuario.
 const RUTAS_MODO_CLARO_FORZADO = ["/diagramav", "/diagramav/default"];
 
 function obtenerModoInicial(): ColorMode {

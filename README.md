@@ -68,7 +68,7 @@ cd backend
 npm install
 ```
 
-Crear la base de datos ejecutando `schema.sql` en PostgreSQL.
+Crear la base de datos ejecutando `backend/db/schema.sql` en PostgreSQL.
 
 Copiar `backend/.env.example` a `backend/.env` y configurar las variables:
 
@@ -110,17 +110,19 @@ http://localhost:3000
 
 ```text
 DiagramaV/
-├── src/                 # Frontend
-│   ├── components/      # Componentes reutilizables
-│   └── pages/           # Páginas de alumnos, profesores y administrador
+├── src/                     # Frontend
+│   ├── assets/              # Imágenes y recursos estáticos
+│   ├── components/          # Componentes reutilizables (incluye guards de rutas y el Diagrama V)
+│   ├── context/             # Estado global (modo claro/oscuro)
+│   └── pages/                # Páginas de alumnos, profesores y administrador
 │
-└── backend/             # Backend
-    ├── server.ts        # API y rutas
-    ├── database.ts      # Conexión a PostgreSQL
-    ├── schema.sql       # Esquema de la base de datos
-    ├── create-admin.ts  # Creación del administrador
-    ├── middleware/      # Autenticación y rate limiting
-    └── schemas/         # Validación con Zod
+└── backend/                 # Backend
+    ├── server.ts            # API y rutas
+    ├── database.ts          # Conexión a PostgreSQL
+    ├── db/schema.sql        # Esquema de la base de datos
+    ├── create-admin.ts      # Creación del administrador
+    ├── middleware/          # Autenticación y rate limiting
+    └── schemas/             # Validación con Zod
 ```
 
 ## Flujo del sistema

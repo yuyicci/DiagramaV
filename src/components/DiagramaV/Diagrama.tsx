@@ -9,6 +9,28 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
+const CAMPOS_TEXTO = {
+	titulo: "diagramaTitulo",
+	preguntasFoco: "diagramaPreguntasFoco",
+	teorias: "diagramaTeorias",
+	ecuacionesTexto: "diagramaEcuacionesTexto",
+	conceptos: "diagramaConceptos",
+	conclusiones: "diagramaConclusiones",
+	transformacionesTexto: "diagramaTransformacionesTexto",
+	registros: "diagramaRegistros",
+	eventosObjetos: "diagramaEventosObjetos",
+} as const;
+
+function guardarCampoTexto(clave: string) {
+	return (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		localStorage.setItem(clave, e.target.value);
+	};
+}
+
+function leerCampoTexto(clave: string): string {
+	return localStorage.getItem(clave) ?? "";
+}
+
 export default function Diagrama() {
 	useEffect(() => {
 		document.title = "DiagramaV";
@@ -96,6 +118,8 @@ export default function Diagrama() {
 							className="title-input"
 							placeholder="Título de la Experiencia"
 							maxLength={100}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.titulo)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.titulo)}
 						/>
 					</div>
 					
@@ -136,6 +160,8 @@ export default function Diagrama() {
 							className="middle-input"
 							placeholder="Preguntas Foco"
 							maxLength={280}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.preguntasFoco)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.preguntasFoco)}
 						/>
 					</div>
 					
@@ -164,6 +190,8 @@ export default function Diagrama() {
 							className="left-1-input"
 							placeholder="Teorías"
 							maxLength={450}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.teorias)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.teorias)}
 						/>
 					</div>
 					<div className="left-down">
@@ -188,6 +216,8 @@ export default function Diagrama() {
 							className="left-2-input"
 							placeholder="Ecuaciones"
 							maxLength={500}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.ecuacionesTexto)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.ecuacionesTexto)}
 						/>
 						<EcuacionPreview storageKey="ecuacionesData" align="left" />
 						<button
@@ -218,6 +248,8 @@ export default function Diagrama() {
 							className="left-3-input"
 							placeholder="Conceptos"
 							maxLength={220}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.conceptos)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.conceptos)}
 						/>
 					</div>
 					
@@ -246,6 +278,8 @@ export default function Diagrama() {
 							className="right-1-input"
 							placeholder="Conclusiones"
 							maxLength={450}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.conclusiones)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.conclusiones)}
 						/>
 					</div>
 					<div className="right-down">
@@ -276,6 +310,8 @@ export default function Diagrama() {
 							className="right-2-input"
 							placeholder="Transformaciones"
 							maxLength={250}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.transformacionesTexto)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.transformacionesTexto)}
 						/>
 
 						<div style={{ display: "flex", justifyContent: "space-between", width: "84.5%" }}>
@@ -315,6 +351,8 @@ export default function Diagrama() {
 							className="right-3-input"
 							placeholder="Registros"
 							maxLength={220}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.registros)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.registros)}
 						/>
 							
 						<div className="tabla-preview-container">
@@ -351,6 +389,8 @@ export default function Diagrama() {
 							className="bottom-input"
 							placeholder="Eventos/Objetos"
 							maxLength={1000}
+							defaultValue={leerCampoTexto(CAMPOS_TEXTO.eventosObjetos)}
+							onChange={guardarCampoTexto(CAMPOS_TEXTO.eventosObjetos)}
 						/>
 					</div>
 				</div>

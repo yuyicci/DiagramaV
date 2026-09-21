@@ -3,11 +3,14 @@ import "./Tabla.css";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
+import { useTheme } from '@mui/material/styles';
 
 export default function Tabla() {
 	useEffect(() => {
 		document.title = "Tabla";
 	}, []);
+
+	const theme = useTheme();
 
 	const [data, setData] = useState<string[][]>(() => {
 		const saved = localStorage.getItem("tablaData");
@@ -68,7 +71,7 @@ export default function Tabla() {
 				<button onClick={addColumn}>Agregar columna</button>
 			</div>
 
-			<table border={1}>
+			<table border={1} style={{ color: theme.palette.text.primary }}>
 				<thead>
 					<tr>
 						<th>Tabla</th>
@@ -120,7 +123,9 @@ export default function Tabla() {
 											height: "30px",
 											textAlign: "center",
 											resize: "none",
-											overflow: "hidden"
+											overflow: "hidden",
+											color: theme.palette.text.primary,
+											backgroundColor: theme.palette.background.paper
 										}}
 									/>
 								</td>

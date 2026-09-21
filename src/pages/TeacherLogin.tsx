@@ -53,10 +53,8 @@ export default function Login() {
                 return;
             }
 
-            // Guardamos el JWT del profesor
             localStorage.setItem("teacherToken", data.token);
 
-            // Entramos al panel del profesor
             navigate("/teacher");
 
         } catch (error) {

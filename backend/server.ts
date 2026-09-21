@@ -62,8 +62,14 @@ if (!frontendUrl) {
 
 app.use(helmet());
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://diagramav.cl",
+    "https://www.diagramav.cl"
+];
+
 app.use(cors({
-    origin: frontendUrl
+    origin: allowedOrigins
 }));
 
 app.use(express.json({ limit: "6mb" }));
@@ -394,12 +400,6 @@ app.post("/teachers/register", registerLimiter, async (req, res) => {
                     [name, mail, passwordHash, 1]
                 );
             } catch (insertError) {
-                // 23505 = unique_violation en Postgres. Puede pasar si
-                // dos registros con el mismo mail llegaron casi al mismo
-                // tiempo y ambos pasaron el SELECT de arriba antes de que
-                // el otro terminara su INSERT. No es un error real del
-                // servidor, es el caso esperado de "ya existía": lo
-                // absorbemos en silencio para no revelar el duplicado.
                 if (
                     !(
                         insertError &&
@@ -412,9 +412,6 @@ app.post("/teachers/register", registerLimiter, async (req, res) => {
                 }
             }
         }
-
-        // Respuesta idéntica exista o no el mail, para no revelar
-        // qué correos ya están registrados (evita user enumeration).
         return res.status(201).json({
             message: "Si los datos son válidos, tu solicitud fue registrada. Espera la aprobación del administrador."
         });
@@ -559,7 +556,6 @@ app.post(
         try {
             const teacherId = req.teacherId;
 
-            // Desactivar el código activo anterior
             await pool.query(
                 `UPDATE "Code"
                  SET active = false
@@ -568,7 +564,6 @@ app.post(
                 [teacherId]
             );
 
-            // Generar un código único
             let code: string;
             let existe = true;
 
@@ -588,7 +583,6 @@ app.post(
                 existe = resultado.rows.length > 0;
             }
 
-            // Crear el nuevo código activo
             const resultado = await pool.query(
                 `INSERT INTO "Code"
                     (code, active, creation_date, id_teacher)

@@ -31,16 +31,12 @@ export default function TeacherRoute({ children }: Props) {
                 );
 
                 if (response.status === 401 || response.status === 403) {
-                    // El backend rechazó el token explícitamente: ahí sí
-                    // tiene sentido borrarlo y mandar a login.
                     localStorage.removeItem("teacherToken");
                     setStatus("unauthenticated");
                     return;
                 }
 
                 if (!response.ok) {
-                    // Otro tipo de error del servidor (500, etc.): no
-                    // sabemos si el token es válido, no lo borramos.
                     setStatus("network-error");
                     return;
                 }
@@ -48,8 +44,6 @@ export default function TeacherRoute({ children }: Props) {
                 setStatus("authenticated");
 
             } catch (error) {
-                // Error de red/conexión: el token puede seguir siendo
-                // válido, no lo borramos.
                 console.error(error);
                 setStatus("network-error");
             }

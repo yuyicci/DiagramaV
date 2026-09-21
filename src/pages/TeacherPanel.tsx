@@ -361,7 +361,7 @@ export default function TeacherPanel() {
 
                         <TextField
                             variant="standard"
-                            label="Texto 1"
+                            label="Nombre Institución"
                             value={text1}
                             onChange={(e) => setText1(e.target.value)}
                             multiline
@@ -371,7 +371,7 @@ export default function TeacherPanel() {
 
                         <TextField
                             variant="standard"
-                            label="Texto 2"
+                            label="Nombre Sub-institución"
                             value={text2}
                             onChange={(e) => setText2(e.target.value)}
                             multiline

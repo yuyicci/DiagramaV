@@ -292,7 +292,6 @@ export default function PdfButton({ targetId }: Props) {
 			.from(wrapper)
 			.outputPdf("blob");
 
-		// Descargar el PDF
 		const url = URL.createObjectURL(pdfBlob);
 		const link = document.createElement("a");
 
