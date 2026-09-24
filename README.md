@@ -35,7 +35,7 @@ La forma más rápida y limpia de levantar toda la infraestructura (Base de dato
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [https://github.com/yuyicci/DiagramaV.git](https://github.com/yuyicci/DiagramaV.git)
+git clone https://github.com/yuyicci/DiagramaV.git
 cd DiagramaV
 ```
 
