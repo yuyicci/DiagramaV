@@ -1,6 +1,7 @@
 services:
 
   db:
+    container_name: dv-db
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
@@ -8,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - ":5432"
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./DATABASE/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
@@ -17,8 +18,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - diagramav-net
 
   backend:
+    container_name: dv-api
     build: ./BACKEND
     restart: unless-stopped
     environment:
@@ -29,23 +33,34 @@ services:
       DB_NAME: ${DB_NAME}
       JWT_SECRET: ${JWT_SECRET}
       FRONTEND_URL: ${FRONTEND_URL}
+      CORS_ORIGINS: ${CORS_ORIGINS}
       NODE_ENV: production
     ports:
-      - "${BACKEND_PORT:-3000}:3000"
+      - ":3000"
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - diagramav-net
 
   frontend:
+    container_name: db-front
     build:
       context: ./FRONTEND
       args:
         VITE_API_URL: ${VITE_API_URL}
     restart: unless-stopped
     ports:
-      - "${FRONTEND_PORT:-80}:80"
+      - ":80"
     depends_on:
       - backend
+    networks:
+      - diagramav-net
 
 volumes:
   db_data:
+
+networks:
+  diagramav-net:
+    name: digrama-v-network
+    driver: bridge

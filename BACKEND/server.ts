@@ -1,5 +1,4 @@
 import crypto from "node:crypto";
-
 import argon2 from "argon2";
 import cors from "cors";
 import express from "express";
@@ -62,14 +61,11 @@ if (!frontendUrl) {
 
 app.use(helmet());
 
-const allowedOrigins = [
-    "http://localhost:5173",
-    "https://diagramav.cl",
-    "https://www.diagramav.cl"
-];
+const allowedOrigins = process.env.CORS_ORIGINS?.split(',') || [];
+console.log("Allowed cors origins: ", allowedOrigins);
 
 app.use(cors({
-    origin: allowedOrigins
+    origin: allowedOrigins,
 }));
 
 app.use(express.json({ limit: "6mb" }));
