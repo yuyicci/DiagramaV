@@ -44,7 +44,7 @@ services:
       - diagramav-net
 
   frontend:
-    container_name: db-front
+    container_name: dv-front
     build:
       context: ./FRONTEND
       args:
@@ -62,5 +62,5 @@ volumes:
 
 networks:
   diagramav-net:
-    name: digrama-v-network
+    name: diagramav-net
     driver: bridge
