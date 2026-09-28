@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -23,6 +24,9 @@ export default function Admin() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [processingId, setProcessingId] = useState<number | null>(null);
+
+
+    const navigate = useNavigate();
 
     const cargarSolicitudes = async () => {
         try {
@@ -200,7 +204,8 @@ export default function Admin() {
 
     const cerrarSesion = () => {
         localStorage.removeItem("adminToken");
-        window.location.href = "/admin/login";
+        // window.location.href = "/admin/login";
+        navigate("/admin/login");
     };
 
     return (

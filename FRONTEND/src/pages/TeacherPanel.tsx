@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { API_BASE_URL } from "../config";
+import { useNavigate } from "react-router-dom";
 
 type Teacher = {
     id: number;
@@ -48,6 +49,8 @@ export default function TeacherPanel() {
     const [reportsLoading, setReportsLoading] = useState(true);
     const [reportsPage, setReportsPage] = useState(1);
     const [reportsTotalPages, setReportsTotalPages] = useState(1);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         cargarProfesor();
@@ -263,7 +266,9 @@ export default function TeacherPanel() {
 
     const cerrarSesion = () => {
         localStorage.removeItem("teacherToken");
-        window.location.href = "/teacher/login";
+        // window.location.href = "/teacher/login";
+        navigate("/teacher/login");
+        
     };
 
     if (loading) {
